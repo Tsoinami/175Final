@@ -1,12 +1,15 @@
+# Usage: this script is used to find the center of the hand and store them in
+#        a json file
+
 from __future__ import division
 import json
 
+
 toDump = {}
-offset = 80;  # in case we wanna change the offset !
 
 def processData():
 
-    count = 1  # this is only for debugging
+    # count = 1  # this is only for debugging
 
     #bleh
     global jsonData
@@ -31,33 +34,19 @@ def processData():
         centerX = sum(listOfX) / len(listOfX)
         centerY = sum(listOfY) / len(listOfY)
 
-        # get max and min of X and Y
-        maxX = centerX + offset
-        maxY = centerY + offset
-        minX = centerX - offset
-        minY = centerY - offset
-
-        # get 4 corners, store them in a tuple
-        corner1 = (maxX, maxY)
-        corner2 = (maxX, minY)
-        corner3 = (minX, minY)
-        corner4 = (minX, maxY)
-
-        # store 4 corners tuple into a list
+        # store the center of X and Y for cropping
         box = []
-        box.append(corner1)
-        box.append(corner2)
-        box.append(corner3)
-        box.append(corner4)
+        box.append(centerX)
+        box.append(centerY)
 
         # store the name of the file and the list of 4 corners into a dict
         # for dumping into a json file!!
         toDump[name] = box
 
         # testing with first 10 images using debuggin variable count
-        if count == 10:
-            break
-        count +=1
+        # if count == 10:
+        #     break
+        # count +=1
 
 # method to do json dumpping
 def dumpShit():
