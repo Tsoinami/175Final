@@ -4,24 +4,30 @@ import matplotlib.pyplot as plt
 
 
 def drawing():
-	Joints = json.load(open("./name_and_box.json","r"))
-	names = Joints.keys()
 
+    # open the json file
+    jsonData = json.load(open("./name_and_box.json","r"))
+    names = jsonData.keys()
+
+    # declare how many photo you wanna plot here
+    count = 1
     for name in names:
+        if count == 10:
+            break
+        count +=1
 
-        # read in the image for the background
-		canvas = cv2.imread("./Color/" + name[:-2] + ".jpg")
-		tmp = []
+        # background will be the picture in the folder
+    	canvas = cv2.imread("./Color/" + name[:-2] + ".jpg")
 
-        # this is just pulling out all of the x and y from the json data 
-		for i in xrange(len(Joints[name])):
-			tmp.append([int(Joints[name][i][0]), int(Joints[name][i][1])])
-		# print tmp
-		canvas = draw_hand(canvas, tmp)
-		plt.imshow(canvas[:,:,::-1])
-		plt.pause(1)
+        # draw the box here
+    	for x_y in jsonData[name]:
+            x = int(x_y[0])
+            y = int(x_y[1])
+            # draw the four corners of the box with a circle
+            cv2.circle(canvas, tuple([x,y]) ,5, (0,255,0),-1)
 
-
+    	plt.imshow(canvas[:,:,::-1])
+    	plt.pause(10)
 
 # call the method we wrote to plot the box!
 drawing();

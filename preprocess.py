@@ -2,7 +2,7 @@ from __future__ import division
 import json
 
 toDump = {}
-offset = 100;  # in case we wanna change the offset !
+offset = 80;  # in case we wanna change the offset !
 
 def processData():
 
@@ -18,6 +18,7 @@ def processData():
     # this is the name of the file we're inspecting, loop thru these
     names = jsonData.keys()
     for name in names:
+        # print name
         # store all X and Y coords
         listOfX = []
         listOfY = []
@@ -53,12 +54,12 @@ def processData():
         # for dumping into a json file!!
         toDump[name] = box
 
-        # testing with first 10000 images using debuggin variable count
-        if count == 10000:
+        # testing with first 10 images using debuggin variable count
+        if count == 10:
             break
         count +=1
 
-# method to do jSon dumpping
+# method to do json dumpping
 def dumpShit():
     # dump everything in to a json file here
     with open('name_and_box.json', 'w') as filePointer:
@@ -67,7 +68,7 @@ def dumpShit():
 # call the shit you wrote fam
 processData()
 
-# call the jSon writing file here once you're done !!
+# call the json writing file here once you're done !!
 dumpShit()
 
-print "Success!"
+print "Done!"
