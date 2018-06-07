@@ -44,7 +44,7 @@ def processData():
         toDump[name] = box
 
         # testing with first 10 images using debuggin variable count
-        # if count == 10:
+        # if count == 10000:
         #     break
         # count +=1
 

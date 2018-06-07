@@ -37,19 +37,19 @@ def negCropping():
                 # now need to check if the point over lap with any of the region
                 # boolean condition
                 alreadyPick = point in listOfPoints
-                toAvoidLeft = (point[1] in range(left[1]-85, left[1]+85)) or (point[0] in range(left[0]-85, left[0]+85))
-                toAvoidRight = (point[1] in range(right[1]-85, right[1]+85)) or (point[0] in range(right[0]-85, right[0]+85))
-                toAvoidLeftEnd = (point[1]+170 in range(left[1]-85, left[1]+85)) or (point[0]+170 in range(left[0]-85, left[0]+85))
-                toAvoidRightEnd = (point[1]+170 in range(right[1]-85, right[1]+85)) or (point[0]+170 in range(right[0]-85, right[0]+85))
+                toAvoidLeft = (point[1] in range(left[1]-85, left[1]+85)) and (point[0] in range(left[0]-85, left[0]+85))
+                toAvoidRight = (point[1] in range(right[1]-85, right[1]+85)) and (point[0] in range(right[0]-85, right[0]+85))
+                toAvoidLeftEnd = (point[1]+170 in range(left[1]-85, left[1]+85)) and (point[0]+170 in range(left[0]-85, left[0]+85))
+                toAvoidRightEnd = (point[1]+170 in range(right[1]-85, right[1]+85)) and (point[0]+170 in range(right[0]-85, right[0]+85))
                 while toAvoidLeft or toAvoidRight or toAvoidLeftEnd or toAvoidRightEnd or alreadyPick:
                     # while any of the condition is true above, sample a new point
                     point = (int(random.randint(0,(img.shape[1])-170)), int(random.randint(0,(img.shape[0])-170)))
                     # reset the condition
                     alreadyPick = point in listOfPoints
-                    toAvoidLeft = (point[1] in range(left[1]-85, left[1]+85)) or (point[0] in range(left[0]-85, left[0]+85))
-                    toAvoidRight = (point[1] in range(right[1]-85, right[1]+85)) or (point[0] in range(right[0]-85, right[0]+85))
-                    toAvoidLeftEnd = (point[1]+170 in range(left[1]-85, left[1]+85)) or (point[0]+170 in range(left[0]-85, left[0]+85))
-                    toAvoidRightEnd = (point[1]+170 in range(right[1]-85, right[1]+85)) or (point[0]+170 in range(right[0]-85, right[0]+85))
+                    toAvoidLeft = (point[1] in range(left[1]-85, left[1]+85)) and (point[0] in range(left[0]-85, left[0]+85))
+                    toAvoidRight = (point[1] in range(right[1]-85, right[1]+85)) and (point[0] in range(right[0]-85, right[0]+85))
+                    toAvoidLeftEnd = (point[1]+170 in range(left[1]-85, left[1]+85)) and (point[0]+170 in range(left[0]-85, left[0]+85))
+                    toAvoidRightEnd = (point[1]+170 in range(right[1]-85, right[1]+85)) and (point[0]+170 in range(right[0]-85, right[0]+85))
                 listOfPoints.append(point) # if we get thru, append the point here
                 countImages+=1
                 row = point[1]

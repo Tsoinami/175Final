@@ -18,7 +18,7 @@ def cropping():
     # declare how many photo you wanna check out here
     # count = 1
     for name in names:
-        # if count == 10:
+        # if count == 10000:
         #     break
         # count +=1
 
@@ -40,3 +40,4 @@ def cropping():
 
 # call the method we wrote to plot the box!
 cropping();
+print "Done!"
