@@ -3,7 +3,7 @@ import cv2, random
 import matplotlib.pyplot as plt
 import numpy as np
 
-def test():
+def main():
     jsonData = json.load(open("../name_and_box.json","r"))
     names = jsonData.keys()
     # this approach is too systematic, will create bias to the learner
@@ -12,6 +12,7 @@ def test():
     debuggingVar = 1
     for name in names:
         if debuggingVar == 4000:
+            print "Done, Stoping now!"
             break
         else:
             img = cv2.imread("../Color/" + name[:-2] + ".jpg")
@@ -40,10 +41,6 @@ def test():
                 rightShape = img[ centerYR-85 :centerYR + 85  , centerXR - 85: centerXR + 85].shape
                 img[ centerYL-85 :centerYL + 85  , centerXL - 85: centerXL + 85] = img[0:leftShape[0],0:leftShape[1]]
                 img[ centerYR-85 :centerYR + 85  , centerXR - 85: centerXR + 85] = img[0:rightShape[0],0:rightShape[1]]
-                # try to save down the image here
-                # cv2.imwrite("../wellnt/" + str(name)+".jpg", img)
-                debuggingVar += 1 # increment to break
-
                 # this integer is only used for the two for loops down below
                 countImages = 0 # this is to save each individual patches we're going to cut
                 listOfPoints = []
@@ -61,19 +58,7 @@ def test():
                     crop_img = img[ row :row+170  , col : col+170] # crop a window of 170x170 pixels
                     # plt.imshow(crop_img[:,:,::-1])
                     # plt.pause(0.05) # pause for 3 secs
-                    cv2.imwrite("../testing/" + str(name[:-2]) + "_" + str(countImages)+".jpg", crop_img)
-                # for row in xrange(0,endRow-170,170):
-                #     for col in xrange(0,endCol-170,170):
-                #         # need to add a check that even if the col is wihin the range of the
-                #         # box that contains the hand, don't crop
-                #         #
-                #         crop_img = img[ row :row+170  , col : col+170] # crop a window of 170x170 pixels
-                #     	# plt.imshow(crop_img[:,:,::-1])
-                #     	# plt.pause(0.05) # pause for 3 secs
-                #         countImages +=1
-                #
-                #         # save the image in a folder
-                #         # need to decide how to name the negative patches as well!
-                #         cv2.imwrite("../wellnt/" + str(name[:-2]) + "_" + str(countImages)+".jpg", crop_img)
-test()
+                    cv2.imwrite("../new_neg_data/" + str(name[:-2]) + "_" + str(countImages)+".jpg", crop_img)
+                debuggingVar += 1 # increment to break
+main()
 print "Done"
