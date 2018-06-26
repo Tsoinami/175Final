@@ -10,7 +10,9 @@ offset = 85 # if we wanna change the offset
 
 def cropping():
 
-    global offset
+	print "Wadduppppppp!!"
+
+    # global offset
     # open the json file
     jsonData = json.load(open("./name_and_box.json","r"))
     names = jsonData.keys()
